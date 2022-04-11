@@ -9,8 +9,9 @@ function App() {
     <main className="app">
       <header className="app-header">
         <div>Dostępność</div>
-        <div>Wybierz rodzaj pojazdu</div>
+        <div>Wybierz typ pojazdu</div>
         <div>Poziom naładownia baterii</div>
+        <div>Zasięg pojazdu</div>
       </header>
       <MapContainer center={[52.22977, 21.01178]} zoom={12}>
         <TileLayer
