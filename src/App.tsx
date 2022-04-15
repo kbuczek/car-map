@@ -1,6 +1,9 @@
 import React from "react";
 import "./App.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
 import { iconCar } from "./components/IconCar/iconCar";
 import carsData from "./data/cars.json";
 
@@ -8,10 +11,23 @@ function App() {
   return (
     <main className="app">
       <header className="app-header">
-        <div>Dostępność</div>
-        <div>Wybierz typ pojazdu</div>
-        <div>Poziom naładownia baterii</div>
-        <div>Zasięg pojazdu</div>
+        <div className="app-name">CAR MAP</div>
+        {/* <Card> */}
+        <section className="app-form">
+          <Form.Group>
+            <Form.Select>
+              <option disabled selected>
+                Dostępność pojazdu
+              </option>
+              <option>Dostępne</option>
+            </Form.Select>
+          </Form.Group>
+          <div>Wybierz typ pojazdu</div>
+          <div>Poziom naładownia baterii</div>
+          <div>Zasięg pojazdu</div>
+        </section>
+        <div></div>
+        {/* </Card> */}
       </header>
       <MapContainer center={[52.22977, 21.01178]} zoom={12}>
         <TileLayer
