@@ -9,20 +9,46 @@ function App() {
   return (
     <main className="app">
       <header className="app-header">
-        <div className="app-name">CAR MAP</div>
+        <div className="app-name">Car Map</div>
         {/* <Card> */}
         <section className="app-form">
+          <div>Filtruj:</div>
           <Form.Group>
-            <Form.Select>
+            <Form.Select title="Dostępność pojazdu">
               <option disabled selected>
                 Dostępność pojazdu
               </option>
               <option>Dostępne</option>
+              <option>Niedostępne</option>
             </Form.Select>
           </Form.Group>
-          <div>Wybierz typ pojazdu</div>
-          <div>Poziom naładownia baterii</div>
-          <div>Zasięg pojazdu</div>
+          <Form.Group>
+            <Form.Select title="Typ pojazdu">
+              <option disabled selected>
+                Typ pojazdu
+              </option>
+              <option>Dostępne</option>
+              <option>Niedostępne</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group>
+            <Form.Select title="Typ pojazdu">
+              <option disabled selected>
+                Poziom naładownia baterii
+              </option>
+              <option>Dostępne</option>
+              <option>Niedostępne</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group>
+            <Form.Select title="Typ pojazdu">
+              <option disabled selected>
+                Zasięg pojazdu
+              </option>
+              <option>Dostępne</option>
+              <option>Niedostępne</option>
+            </Form.Select>
+          </Form.Group>
         </section>
         <div></div>
         {/* </Card> */}
