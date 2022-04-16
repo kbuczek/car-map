@@ -1,8 +1,6 @@
 import React from "react";
 import "./App.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { iconCar } from "./components/IconCar/iconCar";
 import carsData from "./data/cars.json";
