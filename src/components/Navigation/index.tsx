@@ -35,7 +35,7 @@ const Navig: React.FunctionComponent<Navig> = ({
           >
             <option value="ALL">Wszystkie</option>
             <option value="AVAILABLE">Dostępne</option>
-            <option value="UNAVILABLE">Niedostępne</option>
+            <option value="UNAVAILABLE">Niedostępne</option>
           </Form.Select>
         </Form.Group>
         <Form.Group>

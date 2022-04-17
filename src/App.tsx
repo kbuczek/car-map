@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "./components/Navigation";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
 import { iconCarAv } from "./components/IconCar/iconCarAv";
 import { iconCarUnAv } from "./components/IconCar/iconCarUnAv";
 import { iconTruckAv } from "./components/IconCar/iconTruckAv";
@@ -10,7 +10,6 @@ import Loading from "./components/Loading";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import carsData from "./data/cars.json";
 import ApiUrls from "./api";
-// import useFetch from "./components/useFetch";
 // import Fetch from "./components/Fetch";
 import Button from "react-bootstrap/Button";
 import "./App.css";
@@ -50,6 +49,7 @@ function App() {
     reservation: "",
     status: "",
   });
+  const allCarsData = carsData;
 
   const [mapFilters, setMapFilters] = useState<mapFilters>({
     status: "ALL",
@@ -62,77 +62,65 @@ function App() {
   //   FetchData();
   // }, []);
 
+  //filtrowanie danych
   useEffect(() => {
-    switch (mapFilters.status) {
-      case "AVAILABLE":
-        const newVehicleData = vehicleData.objects.filter(
-          (item) => item.status === "AVAILABLE"
-        );
-        const newVehicleData2 = { objects: newVehicleData };
-        setVehicleData(newVehicleData2);
-        break;
-      case "UNAVAILABLE":
-        const newVehicleData3 = vehicleData.objects.filter(
-          (item) => item.status === "UNAVAILABLE"
-        );
-        const newVehicleData4 = { objects: newVehicleData3 };
-        setVehicleData(newVehicleData4);
-        break;
-      default:
-        setVehicleData(carsData);
+    let currentVehicleData = allCarsData;
+
+    if (mapFilters.status !== "ALL") {
+      const newVehicleData = currentVehicleData.objects.filter(
+        (item) => item.status === mapFilters.status
+      );
+      const newVehicleData2 = { objects: newVehicleData };
+      currentVehicleData = newVehicleData2;
     }
-  }, [mapFilters.status]);
 
-  useEffect(() => {
-    switch (mapFilters.type) {
-      case "CAR":
-        setVehicleData(carsData);
-        const newVehicleData = vehicleData.objects.filter(
-          (item) => item.type === "CAR"
-        );
-        const newVehicleData2 = { objects: newVehicleData };
-        setVehicleData(newVehicleData2);
-        break;
-      case "TRUCK":
-        setVehicleData(carsData);
-        const newVehicleData3 = vehicleData.objects.filter(
-          (item) => item.type === "TRUCK"
-        );
-        const newVehicleData4 = { objects: newVehicleData3 };
-        setVehicleData(newVehicleData4);
-        break;
-      default:
-        setVehicleData(carsData);
+    if (mapFilters.type !== "ALL") {
+      const newVehicleData = currentVehicleData.objects.filter(
+        (item) => item.type === mapFilters.type
+      );
+      const newVehicleData2 = { objects: newVehicleData };
+      currentVehicleData = newVehicleData2;
     }
-  }, [mapFilters.type]);
 
-  const FetchData = async () => {
-    try {
-      const response = await fetch(ApiUrls.vehicles, {
-        method: "GET",
-        mode: "no-cors",
-      });
-
-      console.log(response);
-
-      // if (response.status !== 200) {
-      //   throw new Error("cannot fetch data");
-      // }
-      const data = await response.json();
-      // setVehicleData(data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
+    if (mapFilters.battery !== "ALL") {
+      const newVehicleData = currentVehicleData.objects.filter(
+        (item) =>
+          item.batteryLevelPct > parseInt(mapFilters.battery) &&
+          item.batteryLevelPct <= parseInt(mapFilters.battery) + 25
+      );
+      const newVehicleData2 = { objects: newVehicleData };
+      currentVehicleData = newVehicleData2;
     }
-  };
 
-  // const changeMapFilters = () => {
-  // if (mapFilters === "all") {
-  //   setMenuItems(items);
-  //   return;
-  // }
-  // const newItems = items.filter((item) => item.categor === category);
-  // setMenuItems(newItems);
+    if (mapFilters.range !== "ALL") {
+      const newVehicleData = currentVehicleData.objects.filter(
+        (item) =>
+          item.rangeKm > parseInt(mapFilters.range) &&
+          item.rangeKm <= parseInt(mapFilters.range) + 50
+      );
+      const newVehicleData2 = { objects: newVehicleData };
+      currentVehicleData = newVehicleData2;
+    }
+
+    setVehicleData(currentVehicleData);
+  }, [mapFilters]);
+
+  // const FetchData = async () => {
+  //   try {
+  //     const response = await fetch(ApiUrls.vehicles, {
+  //       method: "GET",
+  //       mode: "cors",
+  //     });
+
+  //     if (response.status !== 200) {
+  //       throw new Error("cannot fetch data");
+  //     }
+  //     const data = await response.json();
+  //     setVehicleData(data);
+  //     setLoading(false);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
   // };
 
   const chooseCarIcon = (type: string, status: string) => {
@@ -172,8 +160,15 @@ function App() {
                 icon={chooseCarIcon(item.type, item.status)}
               >
                 <Popup>
-                  {item.name} <br /> {item.status} <br /> Zasięg: {item.rangeKm}{" "}
-                  km
+                  <div style={{ fontWeight: 800 }}>{item.name}</div>
+                  <hr style={{ padding: 0, margin: 0, marginBottom: "8px" }} />
+                  {item.status === "AVAILABLE"
+                    ? "DOSTĘPNY"
+                    : "NIEDOSTĘPNY"}{" "}
+                  <br /> Zasięg: {item.rangeKm} km
+                  <br /> Bateria: {item.batteryLevelPct}% <br />
+                  <br />
+                  {/* <hr /> */}
                   <Button
                     onClick={() => {
                       setDetailsInfo(item);
@@ -185,6 +180,19 @@ function App() {
               </Marker>
             );
           })}
+          <Polygon
+            positions={[
+              [
+                [52.244341, 21.000931],
+                [52.246591, 20.999411],
+                [52.249256, 20.998729],
+                [52.249595, 21.002305],
+                [52.250181, 21.004062],
+                [52.246568, 21.011517],
+                [52.245798, 21.004636],
+              ],
+            ]}
+          />
         </MarkerClusterGroup>
       </MapContainer>
       <CarDetails detailsInfo={detailsInfo} setDetailsInfo={setDetailsInfo} />

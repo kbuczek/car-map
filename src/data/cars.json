@@ -203,6 +203,33 @@
         "longitude": 21.01178
       },
       "metadata": null
+    },
+    {
+      "discriminator": "vehicle",
+      "platesNumber": "WZ8748W",
+      "sideNumber": "Z1-WH-01",
+      "color": "White",
+      "type": "CAR",
+      "picture": {
+        "id": "9818875c-9e8b-4dc5-98ae-5909a8d632e2",
+        "name": "9818875c-9e8b-4dc5-98ae-5909a8d632e2",
+        "extension": null,
+        "contentType": null
+      },
+      "rangeKm": 134,
+      "batteryLevelPct": 86,
+      "reservationEnd": null,
+      "reservation": null,
+      "status": "AVAILABLE",
+      "locationDescription": null,
+      "address": null,
+      "mapColor": { "rgb": "ffffff", "alpha": 0.5 },
+      "promotion": null,
+      "id": "00000000-0000-0000-0005-000000000001",
+      "name": "Nissan Leaf White",
+      "description": null,
+      "location": { "latitude": 52.23275, "longitude": 20.930372 },
+      "metadata": null
     }
   ]
 }
