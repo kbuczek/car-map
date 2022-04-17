@@ -1,0 +1,24 @@
+.car-details {
+  /* display: flex; */
+  /* align-items: center; */
+  padding: 5px;
+  position: absolute;
+  margin: 0 auto;
+  top: 200px;
+  left: 33vw;
+  z-index: 314159;
+  pointer-events: initial;
+  color: var(--darkblue);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: saturate(300%) blur(10px);
+  width: 630px;
+  height: 60vh;
+  border-radius: 10px;
+  transition: transform 400ms ease-in-out;
+  /* transform: translateY(150%); */
+  /* overflow: hidden; */
+}
+
+.show {
+  /* transform: translateY(0); */
+}

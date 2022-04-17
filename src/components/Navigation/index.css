@@ -1,0 +1,46 @@
+.navig {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 314159;
+  pointer-events: initial;
+  color: var(--darkblue);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: saturate(300%) blur(10px);
+  width: 100vw;
+}
+
+.navig div {
+  padding: 5px;
+  padding-top: 0;
+}
+
+.navig-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navig-form span {
+  font-size: 0.75rem;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .navig {
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .navig-form {
+    flex-direction: column;
+  }
+
+  .navig-form div select {
+    width: 90vw;
+  }
+}
