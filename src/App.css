@@ -12,3 +12,12 @@
   position: absolute;
   top: 80px;
 }
+
+.markercluster-map {
+  height: 90vh;
+}
+
+.marker-cluster {
+  background-color: white !important;
+  /* color: white !important; */
+}

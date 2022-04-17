@@ -1,10 +1,8 @@
 const myFetch = async (url: string, method: string = "GET") => {
-  const response = await fetch(url, {
-    method: method,
-    mode: "cors",
-  });
+  const response = await fetch(url);
 
   if (response.status !== 200) {
+    console.log(response);
     throw new Error("cannot fetch data");
   }
 
