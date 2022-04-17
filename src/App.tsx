@@ -6,8 +6,8 @@ import CarDetails from "./components/CarDetails";
 import Loading from "./components/Loading";
 import carsData from "./data/cars.json";
 import ApiUrls from "./api";
-import useFetch from "./components/useFetch";
-import Fetch from "./components/Fetch";
+// import useFetch from "./components/useFetch";
+// import Fetch from "./components/Fetch";
 import Button from "react-bootstrap/Button";
 import "./App.css";
 
