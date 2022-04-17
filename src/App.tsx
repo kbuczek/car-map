@@ -126,14 +126,14 @@ function App() {
     }
   };
 
-  const changeMapFilters = () => {
-    // if (mapFilters === "all") {
-    //   setMenuItems(items);
-    //   return;
-    // }
-    // const newItems = items.filter((item) => item.categor === category);
-    // setMenuItems(newItems);
-  };
+  // const changeMapFilters = () => {
+  // if (mapFilters === "all") {
+  //   setMenuItems(items);
+  //   return;
+  // }
+  // const newItems = items.filter((item) => item.categor === category);
+  // setMenuItems(newItems);
+  // };
 
   const chooseCarIcon = (type: string, status: string) => {
     if (type === "CAR") {
